@@ -1,0 +1,1 @@
+<a class="big" href="../posts/viewall">Edit successful. Click here to view Posts.</a><br/>
