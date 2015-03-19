@@ -10,7 +10,7 @@ class UsersController extends Controller {
     		header('Location: '. 'http://'.DB_HOST.'/'. DOMAIN.'/users/viewall');
 
     	}
-    	else if($action != "login" && !isset($_SESSION['uid'])){ //not logged in
+    	else if($action != "login" && !isset($_SESSION['uid']) && $action != "add"){ //not logged in
 
     		header('Location: '. 'http://'.DB_HOST.'/'. DOMAIN.'/users/login');
 
@@ -176,7 +176,7 @@ class UsersController extends Controller {
 			$columns = array('email_address', 'password');
 			$values = array($email_address,$password);
 			$this->set('title','');
-			$result = $this->User->selectByCondition($fields,$columns,$values);
+			$result = $this->User->selectByCondition($fields,$columns,$values, 'id','DESC');
 
 			if(count($result) == 1){
 
@@ -194,7 +194,10 @@ class UsersController extends Controller {
 
 			else{
 
-				header('Location: '. 'http://'.DB_HOST.'/'. DOMAIN.'/users/login');
+				$this->set('title','Login');
+				$this->set('error', 'Incorrect email address or password.');
+				$this->_template->render();
+				//header('Location: '. 'http://'.DB_HOST.'/'. DOMAIN.'/users/login');
 
 			}
 

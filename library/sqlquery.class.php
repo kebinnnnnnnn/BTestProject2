@@ -42,7 +42,7 @@ class SQLQuery {
 
 	function query($query, $singleResult = 0) 
     {
-
+        
 		$this->_result = mysql_query($query, $this->_dbHandle);
 
 		if (preg_match("/select/i",$query)) 

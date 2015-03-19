@@ -24,6 +24,7 @@ class Model extends SQLQuery
   public function selectByCondition($fields,$columns,$values, $orderByField = "", $ascDesc = ""){
 
    		$sql = "";   		
+      $values = $this->cleanDataInArray($values);
       if(count($values) == 1){
 
    			$sql = sprintf("SELECT %s FROM %s WHERE %s = '%s' ORDER BY %s %s", 
@@ -144,7 +145,7 @@ class Model extends SQLQuery
       foreach ($stringArray as $value) {
 
         $stripped = strip_tags($value);
-        array_push($cleanArray, mysql_escape_string($stripped));
+        array_push($cleanArray, mysql_real_escape_string($stripped));
 
       }
       
