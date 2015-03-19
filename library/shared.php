@@ -68,11 +68,7 @@ function callHook() {
 
 	if ((int)method_exists($controller, $action)) {
 			call_user_func_array(array($dispatch,$action),$queryString);
-	} else {
-			 header('Location: '. 'http://localhost/BTestProject1/'.$controllerName.'/viewall');
 	}
-
-	
 
 	
 }

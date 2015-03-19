@@ -15,20 +15,6 @@ class Controller {
 		$this->$model = new $model;
 		$this->_template = new Template($controller,$action);
 
-		session_start();
-
-	}
-
-	function IsLoggedIn()
-	{
-
-		if(!isset($_SESSION["uid"]))
-		{
-
-			header('Location: '. 'http://localhost/BTestProject1/users/loginUser');
-
-		}
-
 	}
 
 	function set($name,$value) {
@@ -37,14 +23,9 @@ class Controller {
 
 	function __destruct() {
 
-		if($this->_action == 'edit' || $this->_action == 'delete')
-		{
-			header('Location: '. 'http://localhost/BTestProject1/'.$this->_controller.'/viewall');
-		}
-		else
-		{
-			$this->_template->render();
-		}
+		// if($_isRender){
+		// 	$this->_template->render();
+		// }
 	}
 
 }
